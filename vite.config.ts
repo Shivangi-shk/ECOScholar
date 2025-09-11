@@ -9,12 +9,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig(({ mode }) => ({
+  base: "/ECOScholar/",   // 👈 important for GitHub Pages
   server: {
     host: "::",
     port: 8080,
     fs: {
       allow: [
-        path.resolve(__dirname), // allow root directory
+        path.resolve(__dirname),
         path.resolve(__dirname, "client"),
         path.resolve(__dirname, "shared")
       ],
@@ -22,7 +23,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: "dist/spa",
+    outDir: "dist",   // 👈 changed from dist/spa → dist (so gh-pages works)
   },
   plugins: [react(), expressPlugin()],
   resolve: {
@@ -43,3 +44,4 @@ function expressPlugin(): Plugin {
     },
   };
 }
+
